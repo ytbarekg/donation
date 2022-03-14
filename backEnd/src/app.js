@@ -3,6 +3,8 @@ import express from "express"
 import mongoose from "mongoose"
 import userRoute from "./routes/userRoute.js"
 import donationRoute from "./routes/donationRoute.js"
+import grantRoute from "./routes/grantRoute.js"
+import beneficiaryRoute from "./routes/beneficiaryRoute.js"
 
 dotenv.config()
 
@@ -18,6 +20,8 @@ app.use(express.json());
 
 app.use("/api/users/", userRoute);
 app.use("/api/donations/", donationRoute);
+app.use("/api/grants/", grantRoute);
+app.use("api/beneficiaries/", beneficiaryRoute);
 
 app.use((err, req, res, next) => {
     console.log(err.stack);
