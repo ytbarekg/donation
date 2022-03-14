@@ -6,8 +6,8 @@ class GrantService{
         this.grantModel = Grant;
         autoBind(this);
     }
-    async registerGrant(grantData){        
-        const grant = this.grantModel.create(grantData);
+    async saveGrant(data){        
+        const grant = this.grantModel.create(data);
         return grant;   
     }
     async viewGrants(){
