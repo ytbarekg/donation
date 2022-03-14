@@ -1,10 +1,10 @@
-import authService from "../services/authService.js";
+import userService from "../services/userService.js";
 import autoBind from "auto-bind";
 
 class AuthController {
     constructor() {
         autoBind(this)
-        this.service = authService
+        this.service = userService
     }
 
     async signup(req, res, next) {

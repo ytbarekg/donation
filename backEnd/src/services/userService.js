@@ -79,7 +79,7 @@ class AuthService {
     }
 
     async signup(userData) {
-        userData.role = this.ROLES.donor;
+        userData.role = Roles.donor;
         const user = await this.createUser(userData);
         return user;
     }
