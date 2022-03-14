@@ -37,8 +37,9 @@ class AuthController {
 
     async signout(req, res, next) {
         try {
-            const {id} = req.user.id;
-            await this.service.signout(id);
+            const authHeader = req.headers.authorization;
+            const token = authHeader && authHeader.split(" ")[1]
+            await this.service.signout(token);
             res.json({success: true});
         }
         catch(error) {
@@ -60,8 +61,8 @@ class AuthController {
     async changePassword(req, res, next) {
         try {
             const {currentPassword, newPassword} = req.body;
-            const {userId} = req.user.id;
-            await this.service.changePassword(userId, currentPassword, newPassword);
+            const {id} = req.user;
+            await this.service.changePassword(id, currentPassword, newPassword);
             res.json({success: true});
         }
         catch(error) {
@@ -74,10 +75,6 @@ class AuthController {
             let data = req.body;
             this.validateUser(data);
             let user = await this.service.createUser(data);
-            // user = {
-            //     id: user.id,
-            //     ...user
-            // }
             res.json(user);
         }
         catch(error) {
@@ -85,11 +82,44 @@ class AuthController {
         }
     }
 
-    async updateAccountStatus(req, res, next) {
+    async getAll(req, res, next) {
         try {
-            const {id, status} = req.body;
-            await this.service.updateAccountStatus(id, status);
-            res.json({success: true})
+            const users = await this.service.getAll();
+            console.log(users);
+            res.json(users);
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async getById(req, res, next) {
+        try {
+            const {id} = req.params;
+            const user = await this.service.getById(id);
+            res.json(user);
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async updateUser(req, res, next) {
+        try {
+            const {id} = req.params;
+            const update = req.body;
+            const user = await this.service.updateUser(id, update);
+            res.json(user)
+        }
+        catch(error) {
+            next(error);
+        }
+    }
+
+    async updateUserMe(req, res, next) {
+        try {
+            const {id} = req.user;
+            const update = req.body;
+            const user = await this.service.updateUser(id, update);
+            res.json(user)
         }
         catch(error) {
             next(error);

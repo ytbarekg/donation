@@ -10,7 +10,7 @@ class AuthMiddleware {
 
     authenticated(req, res, next) {
         try {
-            const authHeader = req.headers.authentication;
+            const authHeader = req.headers.authorization;
             const token = authHeader && authHeader.split(" ")[1]
             const payload = jwtUtil.verify(token);
             if(payload) {
@@ -21,8 +21,8 @@ class AuthMiddleware {
             return next(error)
         }
         catch(error) {
-            new AuthenticationError();
-            return next(error)
+            console.log(error);
+            return next(new AuthenticationError())
         }
     }
 
@@ -40,8 +40,7 @@ class AuthMiddleware {
                 return next(error)
             }
             catch(error) {
-                // const error = new AuthorizationError();
-                return next(error)
+                return next(new AuthorizationError())
             }
         }
         return [this.authenticated, authorized];

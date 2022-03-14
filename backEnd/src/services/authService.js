@@ -1,7 +1,8 @@
 import crypto from "crypto"
 import autoBind from "auto-bind";
+import Roles from '../Roles.js'
 import User from "../models/user.js";
-import jwtUtil from "../utils/hashUtil.js"
+import jwtUtil from "../utils/jwtUtil.js"
 import hashUtil from "../utils/hashUtil.js";
 import CredentialError from "../errors/CredentialError.js";
 import NotFoundError from "../errors/NotFoundError.js";
@@ -25,13 +26,28 @@ class AuthService {
         if(await this.emailExists(userData.email)) {
             throw new ValidationError("Email already Exists!");
         }
+        
+        let roleFound = false;
+        for (const role in Roles) {
+            console.log(role)
+            if(userData.role === Roles[role]) {
+
+                roleFound = true;
+                break;
+            }
+        }
+
+        if(!roleFound) {
+            throw new ValidationError("Unknown Role!");
+        }
+
         try {
             const verifyToken = crypto.randomBytes(32).toString("hex");
             userData = {
-                password: await hashUtil.hashPassword(userData.password),
                 verifyToken,
                 ...userData
             }
+            userData.password = await hashUtil.hashPassword(userData.password);
             const user = await this.userModel.create(userData);
             return user;
         }
@@ -40,8 +56,30 @@ class AuthService {
         }
     }
 
+    async getAll() {
+        try {
+            const users = await this.userModel.find({});
+            // console.log(users);
+            return users;
+        } catch (error) {
+            throw new ServerError();
+        }
+    }
+
+    async getById(id) {
+        try {
+            const user = await this.userModel.findOne({_id: id});
+            if(user) {
+                return user;
+            }
+            throw new NotFoundError("user");
+        } catch (error) {
+            throw new NotFoundError("user"); 
+        }
+    }
+
     async signup(userData) {
-        userData.role = 'donor'
+        userData.role = this.ROLES.donor;
         const user = await this.createUser(userData);
         return user;
     }
@@ -80,7 +118,7 @@ class AuthService {
         const user = await this.userModel.findOne({_id: userId});
         if(user) {
             if(await hashUtil.comparePassword(currentPassword, user.password)) {
-                user.password = hashUtil.hashPassword(newPassword);
+                user.password = await hashUtil.hashPassword(newPassword);
                 user.save();
                 return true;
             }
@@ -88,12 +126,10 @@ class AuthService {
         throw new CredentialError();
     }
 
-    async updateAccountStatus(userId, status) {
-        const user = await this.userModel.findOne({_id: userId});
+    async updateUser(userId, update) {
+        const user = await this.userModel.updateOne({_id: userId}, update);
         if(user) {
-            user.accountStatus = status;
-            user.save();
-            return true;
+            return user;
         }
         throw new NotFoundError("user");
     }

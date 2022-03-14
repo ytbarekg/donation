@@ -2,6 +2,7 @@ import dotenv from "dotenv"
 import express from "express"
 import mongoose from "mongoose"
 import authRoute from "./routes/authRoute.js"
+import donationRoute from "./routes/donationRoute.js"
 
 dotenv.config()
 
@@ -16,8 +17,10 @@ mongoose.connect(process.env.DB_URL, {useNewUrlParser: true,useUnifiedTopology: 
 app.use(express.json());
 
 app.use("/api/auth/", authRoute);
+app.use("/api/donations/", donationRoute);
 
 app.use((err, req, res, next) => {
+    console.log(err.stack);
     const response = {
         error: err.message,
         path: req.path,
