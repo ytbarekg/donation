@@ -1,12 +1,12 @@
 import { Router } from "express";
-import beneficiaryController from "../controllers/beneficiaryController";
+import beneficiaryController from "../controllers/beneficiaryController.js";
 
 const router = Router();
 
-router.get('/beneficiary', beneficiaryController.viewBeneficiaries);
-router.get('/beneficiary/:id', beneficiaryController.viewBeneficiaryDetail);
-router.post('/beneficiary', beneficiaryController.registerBeneficiary);
-router.put('/beneficiary/:id', beneficiaryController.updateBeneficiaryInfo);
-router.delete('/beneficiary/:id', beneficiaryController.removeBeneficiary);
+router.get('/', beneficiaryController.viewBeneficiaries);
+router.get('/:id', beneficiaryController.viewBeneficiaryDetail);
+router.post('/', beneficiaryController.registerBeneficiary);
+router.put('/:id', beneficiaryController.updateBeneficiaryInfo);
+router.delete('/:id', beneficiaryController.removeBeneficiary);
 
 export default router;
