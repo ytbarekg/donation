@@ -6,8 +6,8 @@ import userRoute from "./routes/userRoute.js"
 import donationRoute from "./routes/donationRoute.js"
 import errorHandler from "./middlewares/errorHandler.js"
 import NotFoundError from "./errors/NotFoundError.js"
-// import grantRoute from "./routes/grantRoute.js"
-// import beneficiaryRoute from "./routes/beneficiaryRoute.js"
+import grantRoute from "./routes/grantRoute.js"
+import beneficiaryRoute from "./routes/beneficiaryRoute.js"
 
 dotenv.config()
 

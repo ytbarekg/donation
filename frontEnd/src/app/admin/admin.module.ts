@@ -16,7 +16,6 @@ import { AdminComponent } from './admin.component';
     CommonModule,
     AdminRoutingModule,
     AngularMaterialModule
-  ],
-  bootstrap: [AdminComponent],
+  ]
 })
 export class AdminModule { }
