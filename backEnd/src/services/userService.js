@@ -100,6 +100,8 @@ class AuthService {
             if(await hashUtil.comparePassword(password, user.password)) {
                 const payload = {
                     id: user._id,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
                     email: user.email,
                     role: user.role
                 }
