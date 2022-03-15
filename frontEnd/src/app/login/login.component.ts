@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthGuardService } from '../auth-guard.service';
+import { AuthStateService } from '../auth-state.service';
+import { UserApiService } from '../user-api.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +12,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  formData: FormGroup;
+  constructor(private authStateService: AuthStateService, private formBuilder: FormBuilder, private router: Router) {
+    this.formData = formBuilder.group({
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      password: ['', Validators.required]
+    });
+  }
+
+  onSubmit() {
+    const {email, password} = this.formData.value;
+    this.authStateService.login(email, password).subscribe(location => {
+      this.router.navigate([location]);
+    });
+  }
 
   ngOnInit(): void {
+    if(this.authStateService.isLoggedIn()) {
+      this.router.navigate(['home']);
+    }
   }
 
 }

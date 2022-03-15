@@ -1,1 +1,57 @@
-<p>signup works!</p>
+<mat-toolbar color="primary" class="app-header">
+    <span class="nav-tool-items">
+        <a mat-button mat-raised-button routerLink="/login" routerLinkActive="active">Log in</a>
+        <a mat-button routerLink="/signup" routerLinkActive="active">signup</a>
+    </span>
+</mat-toolbar>
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+        <mat-card-header>
+            <mat-card-title>Log in</mat-card-title>
+        </mat-card-header>
+        <form class="my-form" [formGroup]="formData" (ngSubmit)="onSubmit()">
+            <mat-card-content fxLayoutGap="10px grid">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="first name" type="text" formControlName="firstName">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="last name" type="text" formControlName="lastName">
+                </mat-form-field>
+            </mat-card-content>
+            <mat-card-content fxLayoutGap="10px grid">
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Country</mat-label>
+                    <mat-select formControlName="country">
+                      <mat-option *ngFor="let count of countries" [value]="count">
+                        {{count}}
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-card-content>
+            <mat-card-content fxLayoutGap="10px grid">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="phone number" type="text" formControlName="phoneNumber">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="email" type="text" formControlName="email">
+                </mat-form-field>
+            </mat-card-content>
+            <mat-card-content fxLayoutGap="10px grid">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Password" type="password" formControlName="password">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Confirm password" type="password" formControlName="confirmPassword">
+                </mat-form-field>
+            </mat-card-content>
+            <button mat-stroked-button color="primary" class="btn-block" [disabled]="!formData.valid">Signup</button>
+        </form>
+    </mat-card>
+</div>
