@@ -12,6 +12,7 @@ import { UserApiService } from '../user-api.service';
 })
 export class LoginComponent implements OnInit {
 
+  formError : any ;
   formData: FormGroup;
   constructor(private authStateService: AuthStateService, private formBuilder: FormBuilder, private router: Router) {
     this.formData = formBuilder.group({
@@ -24,6 +25,11 @@ export class LoginComponent implements OnInit {
     const {email, password} = this.formData.value;
     this.authStateService.login(email, password).subscribe(location => {
       this.router.navigate([location]);
+    }, error=> {
+      console.log(error);
+      this.formError = error;
+    }, () => {
+      
     });
   }
 
@@ -31,6 +37,7 @@ export class LoginComponent implements OnInit {
     if(this.authStateService.isLoggedIn()) {
       this.router.navigate(['home']);
     }
+    this.formError = null;
   }
 
 }

@@ -12,6 +12,7 @@ import { UserApiService } from '../user-api.service';
 })
 export class SignupComponent implements OnInit {
 
+  formError: any;
   formData: FormGroup;
   countries = ['US', 'ET', 'TIG']
   constructor(private authStateService:AuthStateService, private userApiService: UserApiService, private formBuilder: FormBuilder, private router: Router) {
@@ -31,13 +32,20 @@ export class SignupComponent implements OnInit {
     const user: User = this.formData.value;
     this.userApiService.signup(user).subscribe(data => {
       
+    }, error=> {
+      console.log(error);
+      this.formError = error.error;
+    }, () => {
+      
     });
   }
 
   ngOnInit(): void {
+    this.formError = null;
     if(this.authStateService.isLoggedIn()) {
       this.router.navigate(['home']);
     }
+    
   }
 
 }

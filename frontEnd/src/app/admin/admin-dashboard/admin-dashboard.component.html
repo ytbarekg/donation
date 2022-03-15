@@ -1,29 +1,31 @@
-<mat-toolbar>
-    Responsive side navigation
-</mat-toolbar>
-
-<mat-sidenav-container>
-    <mat-sidenav class="mat-elevation-z8">
+<mat-sidenav-container color="primary">
+    <mat-sidenav mode="side" color="primary" opened class="mat-elevation-z8">
         <button mat-button class="menu-button">
             <mat-icon>home</mat-icon>
             <span>Home</span>
         </button>
-        <button mat-button class="menu-button">
-            <mat-icon>person</mat-icon>
-            <span>Profile</span>
-        </button>
-        <button mat-button class="menu-button">
-            <mat-icon>info</mat-icon>
-            <span>About</span>
-        </button>
-
         <mat-divider></mat-divider>
-
+        <button mat-button class="menu-button">
+            <mat-icon>supervisor_account</mat-icon>
+            <span>Makers</span>
+        </button>
+        <button mat-button class="menu-button">
+            <mat-icon>view_list</mat-icon>
+            <span>Donations</span>
+        </button>
+        <button mat-button class="menu-button">
+            <mat-icon>view_list</mat-icon>
+            <span>Grants</span>
+        </button>
+        <button mat-button class="menu-button">
+            <mat-icon>view_list</mat-icon>
+            <span>Endorsements</span>
+        </button>
+        <mat-divider></mat-divider>
         <button mat-button class="menu-button">
             <mat-icon>help</mat-icon>
             <span>Help</span>
         </button>
-        sidenav content
     </mat-sidenav>
     <mat-sidenav-content>
         <div class="content mat-elevation-z8">
