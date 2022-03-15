@@ -30,7 +30,7 @@ class ErrorHandler {
                 code = 400;
                 break;
             case ValidationError:
-                code = 401;
+                code = 400;
                 break;
             case ServerError:
                 code = 500;
