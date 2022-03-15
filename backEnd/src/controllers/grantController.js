@@ -3,21 +3,24 @@ import grantService from "../services/grantService.js";
 
 class GrantController {
   constuctor() {
-    this.grantService = grantService;
+    this.service = grantService;
     autoBind(this);
   }
   async viewGrants(req, res, next) {
-    try {
-      const grant = await this.grantService.viewGrants();
-      res.json(grant);
-    } catch (error) {
+    try 
+    {
+      const grants = await this.service.viewGrants();
+      res.json(grants);
+    }
+     catch (error) 
+     {
       next(error);
     }
   }
   async findById(req, res, next) {
     try {
       const id= req.params;
-      const grant = await this.grantService.findById(id);
+      const grant = await this.service.findById(id);
       res.json(grant);
     } catch (error) {
       next(error);
@@ -26,7 +29,7 @@ class GrantController {
   async registerGrant(req, res, next) {
     try {
       let data = req.body;
-      let grant = await this.grantService.saveGrant(data);
+      let grant = await this.service.registerGrant(data);
       res.json(grant);
     } catch (error) {
       next(error);
@@ -35,7 +38,7 @@ class GrantController {
   async removeGrant(req, res, next) {
     try {
       const grantId = req.params;
-      await this.grantService.removeGrant(grantId);
+      await this.service.removeGrant(grantId);
       res.json({ success: true });
     } catch (error) {
       next(error);
