@@ -1,0 +1,12 @@
+<div fxLayoutAlign="right right">
+    <button mat-button [matMenuTriggerFor]="menu">
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <mat-icon>account_circle</mat-icon>
+            <span>{{user.firstName}}</span>
+        </div>
+    </button>
+    <mat-menu #menu="matMenu">
+      <app-logout></app-logout>
+      <button mat-menu-item>setting</button>
+    </mat-menu>
+</div>

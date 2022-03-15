@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+    <div id="leftContainer" fxFlex="80%">
+    </div>
+    <div id="rightContainer" fxFlex="20%">
+        <a *ngIf="!isLoggedIn()" mat-button mat-raised-button routerLink="/login" routerLinkActive="active">Log in</a>
+        <a *ngIf="!isLoggedIn()" mat-button routerLink="/signup" routerLinkActive="active">signup</a>
+        <div  *ngIf="isLoggedIn()" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end">
+            <app-profile></app-profile>
+        </div>
+    </div>
+</mat-toolbar>

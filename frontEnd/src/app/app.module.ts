@@ -10,13 +10,14 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './auth.interceptor';
 import { DonorDashboardComponent } from './donor-dashboard/donor-dashboard.component';
-import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { MakerDashboardComponent } from './maker-dashboard/maker-dashboard.component';
 import { LogoutComponent } from './logout/logout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AngularMaterialModule } from './angular-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +26,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     LoginComponent,
     HomeComponent,
     DonorDashboardComponent,
-    AdminDashboardComponent,
     MakerDashboardComponent,
-    LogoutComponent
+    LogoutComponent,
+    ToolbarComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
