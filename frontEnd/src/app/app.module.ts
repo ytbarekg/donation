@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { BeneficiaryRegistrationComponent } from './beneficiary-registration/beneficiary-registration.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './auth.interceptor';
@@ -25,6 +26,7 @@ import { ProfileComponent } from './profile/profile.component';
     SignupComponent,
     LoginComponent,
     HomeComponent,
+    BeneficiaryRegistrationComponent,
     DonorDashboardComponent,
     MakerDashboardComponent,
     LogoutComponent,
