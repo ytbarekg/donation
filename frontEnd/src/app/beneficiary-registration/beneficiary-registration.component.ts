@@ -7,7 +7,6 @@ import {MatCardModule} from '@angular/material/card';
 import { AuthStateService } from '../auth-state.service';
 
 
-
 @Component({
   selector: 'app-beneficiary-registration',
   templateUrl: './beneficiary-registration.component.html',
@@ -40,21 +39,12 @@ export class BeneficiaryRegistrationComponent implements OnInit {
    
   onSubmit() {
     const ben: Beneficiary = this.formData.value;
-    this.beneficiaryApi.register(ben).subscribe(data => {
-      
-    }, error=> {
-      console.log(error);
-      this.formError = error.error;
-    }, () => {
-      
+    this.beneficiaryApi.register(ben) .subscribe(data => {
     });
   }
 
   ngOnInit(): void {
-    this.formError = null;
-    if(this.authStateService.isLoggedIn()) {
-      this.router.navigate(['home']);
-    }
+    
     
   }
 
