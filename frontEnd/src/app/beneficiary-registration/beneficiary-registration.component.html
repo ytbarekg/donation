@@ -80,10 +80,11 @@
             </mat-form-field>
         </mat-card-content>
         <mat-card-content fxLayoutGap="10px grid"></mat-card-content>
-            <button mat-stroked-button color="primary" class="btn-block" [disabled]="!formData.valid"> Register </button>
-            <!-- <mat-error *ngIf="formError">{{formError.error}}</mat-error> -->
+        <button mat-stroked-button color="primary" class="btn-block" [disabled]="!formData.valid">Signup</button>
+        <mat-error *ngIf="formError">{{formError.error}}</mat-error>
             
         </mat-card-content>
+        
 
     </form>
 </mat-card>
