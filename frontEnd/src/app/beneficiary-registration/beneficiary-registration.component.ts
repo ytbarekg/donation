@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Beneficiary } from '../beneficiary';
 import { BeneficiaryApiServiceService } from '../beneficiary-api-service.service';
+import {MatCardModule} from '@angular/material/card';
+import { AuthStateService } from '../auth-state.service';
+
 
 
 @Component({
@@ -11,35 +14,48 @@ import { BeneficiaryApiServiceService } from '../beneficiary-api-service.service
   styleUrls: ['./beneficiary-registration.component.css']
 })
 export class BeneficiaryRegistrationComponent implements OnInit {
+  formError: any;
   formData: FormGroup;
   genderType = ['Male', 'Female'];
+  categories =['Elderly','Medical seeker', 'Orphan', 'Disabled']
 
-  constructor(private formBuilder: FormBuilder,private beneficiaryApi : BeneficiaryApiServiceService,private router: Router) {
+  constructor(private formBuilder: FormBuilder,private authStateService:AuthStateService,private beneficiaryApi : BeneficiaryApiServiceService,private router: Router) {
     this.formData = formBuilder.group({
       firstName: ['', Validators.required], 
+      middleName: ['', Validators.required],
       lastName: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
       gender:['', Validators.required],
-      phoneNumber: ['', Validators.required],
+      phoneNumber: ['', { validators: [Validators.required, Validators.pattern("[- +()0-9]{6,}")], updateOn: "blur" }],
       address:['', Validators.required],
       dependents:[''],
-      story:[''],
       category:['', Validators.required],
       grantAmount:['', Validators.required],
       maximumGrant:['',Validators.required],
       registeredBy:['', Validators.required],
       verifiedBy:['', Validators.required],
-      endorcements:['', Validators.required],
-      
+      endorcements:['', Validators.required]      
      });
    }
-   onSubmit() {
+   
+  onSubmit() {
     const ben: Beneficiary = this.formData.value;
     this.beneficiaryApi.register(ben).subscribe(data => {
-     this.router.navigate([data]);      
-    }); 
+      
+    }, error=> {
+      console.log(error);
+      this.formError = error.error;
+    }, () => {
+      
+    });
   }
+
   ngOnInit(): void {
+    this.formError = null;
+    if(this.authStateService.isLoggedIn()) {
+      this.router.navigate(['home']);
+    }
+    
   }
 
 }
