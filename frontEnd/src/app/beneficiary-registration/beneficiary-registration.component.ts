@@ -6,6 +6,7 @@ import { BeneficiaryApiServiceService } from '../beneficiary-api-service.service
 import {MatCardModule} from '@angular/material/card';
 
 
+
 @Component({
   selector: 'app-beneficiary-registration',
   templateUrl: './beneficiary-registration.component.html',
@@ -14,10 +15,12 @@ import {MatCardModule} from '@angular/material/card';
 export class BeneficiaryRegistrationComponent implements OnInit {
   formData: FormGroup;
   genderType = ['Male', 'Female'];
+  categories =['Elderly','Medical seeker', 'Orphan', 'Disabled']
 
   constructor(private formBuilder: FormBuilder,private beneficiaryApi : BeneficiaryApiServiceService,private router: Router) {
     this.formData = formBuilder.group({
       firstName: ['', Validators.required], 
+      middleName: ['', Validators.required],
       lastName: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
       gender:['', Validators.required],
@@ -30,8 +33,7 @@ export class BeneficiaryRegistrationComponent implements OnInit {
       maximumGrant:['',Validators.required],
       registeredBy:['', Validators.required],
       verifiedBy:['', Validators.required],
-      endorcements:['', Validators.required],
-      
+      endorcements:['', Validators.required]      
      });
    }
    onSubmit() {

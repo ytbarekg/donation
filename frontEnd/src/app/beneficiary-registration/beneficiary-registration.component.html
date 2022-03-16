@@ -1,14 +1,11 @@
-<div class="beneficiary-wrapper" fxLayout="row" fxLayoutAlign="center center">
+<div class="beneficiary-wrapper" fxLayout="row" fxLayoutAlign="center">
     <mat-card class="box">
             <mat-card-header>
                 <mat-card-title>Beneficiary Registration</mat-card-title>
-            </mat-card-header>
-
-    </mat-card>
-    
+            </mat-card-header>       
     <form class="my-form" [formGroup]="formData" (ngSubmit)="onSubmit()">
         <mat-card-content fxLayoutGap="10px grid">
-            <!-- <mat-form-field class="full-width">
+            <mat-form-field class="full-width">
                 <input matInput placeholder="first name" type="text" formControlName="firstName">
             </mat-form-field>
             <mat-form-field class="full-width">
@@ -16,9 +13,78 @@
             </mat-form-field>
             <mat-form-field class = "full-width">
                 <input matInput placeholder="last name" type="text" formControlName ="lastName">
-            </mat-form-field> -->
-        </mat-card-content>
-    </form>
+            </mat-form-field>      
+        <mat-card-content fxLayoutGap="15px grid">
+            <mat-form-field appearance="fill">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
 
+            <mat-form-field appearance="fill">
+                <mat-label>Gneder</mat-label>
+                <mat-select formControlName="gender">
+                  <mat-option *ngFor="let gender of genderType" [value]="gender">
+                    {{gender}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-card-content>
+
+        <mat-card-content fxLayoutGap="10px grid">
+            <mat-form-field class = "full-width">
+                <input matInput placeholder="Phone Number" type="text" formControlName ="phoneNumber">
+            </mat-form-field>
+            <mat-form-field class = "full-width">
+                <input matInput placeholder="Address" type="text" formControlName ="address">
+            </mat-form-field>
+        </mat-card-content>
+
+        <mat-card-content fxLayoutGap="10px grid">
+            <mat-form-field appearance="fill">
+                <mat-label>Catagory</mat-label>
+                <mat-select formControlName="catagory">
+                  <mat-option *ngFor="let category of categories" [value]="category">
+                    {{category}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class = "full-width">
+                <input matInput placeholder="Number of dependents" type="number" formControlName ="dependents">
+            </mat-form-field>            
+        </mat-card-content>
+        <mat-card-content fxLayoutGap="10px grid">
+            
+                <mat-form-field class = "full-width">
+                    <input matInput placeholder="Grant Amount" type="number" formControlName ="grantAmount">
+                </mat-form-field>
+                <mat-form-field class = "full-width">
+                    <input matInput placeholder="Maximum Grant" type="number" formControlName ="maximumGrant">
+                
+            </mat-form-field>            
+        </mat-card-content>
+        
+        <mat-card-content fxLayoutGap="10px grid">
+            <mat-form-field class = "full-width">
+                <input matInput placeholder="Registered by" type="text" formControlName ="registeredBy">
+            </mat-form-field>
+
+            <mat-form-field class = "full-width">
+                <input matInput placeholder="Verified by" type="text" formControlName ="verifiedBy">
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-content fxLayoutGap="10px grid">
+            <mat-form-field class = "full-width">
+                <input matInput placeholder="Endorcements" type="text" formControlName ="endorcements">
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-content fxLayoutGap="10px grid"></mat-card-content>
+            <button mat-stroked-button color="primary" class="btn-block" [disabled]="!formData.valid"> Register </button>
+            <!-- <mat-error *ngIf="formError">{{formError.error}}</mat-error> -->
+            
+        </mat-card-content>
+
+    </form>
+</mat-card>
 </div>
-<p>hekko</p>
