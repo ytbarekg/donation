@@ -1,0 +1,36 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+        <mat-card-header>
+            <mat-card-title>Create Donation</mat-card-title>
+        </mat-card-header>
+        <form class="my-form" [formGroup]="formData" (ngSubmit)="onSubmit()">
+            <mat-card-content fxLayoutGap="10px grid">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="donation amount" type="number" formControlName="amount">
+                </mat-form-field>
+            </mat-card-content>
+            <mat-card-content>
+                <mat-form-field appearance="fill">
+                    <mat-label>beneficiary</mat-label>
+                    <mat-select formControlName="beneficiaries">
+                      <mat-option *ngFor="let beneficiary of beneficiaries" [value]="beneficiary.id">
+                        {{beneficiary.name}}
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-card-content>
+            <mat-card-content>
+                <mat-form-field appearance="fill">
+                    <mat-label>Payment Method</mat-label>
+                    <mat-select formControlName="payment">
+                      <mat-option *ngFor="let method of methods" [value]="method">
+                        {{method}}
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-card-content>
+            <button mat-stroked-button color="primary" class="btn-block" [disabled]="!formData.valid">Create</button>
+            <mat-error *ngIf="formError">{{formError.error}}</mat-error>
+        </form>
+    </mat-card>
+</div>

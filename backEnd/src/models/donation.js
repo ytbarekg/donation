@@ -10,7 +10,8 @@ const donationSchema = new Schema({
         transactionNumber: {type: String, required: true},
         amount: {type: Number, required: true},
         status: {type: String, enum: ['Accepted', 'Pending', 'Rejected']}
-    }
+    },
+    status: {type: String, enum: ['Accepted', 'Processed', 'Granted'], default: 'Accepted'}
 })
 
 const Donation = mongoose.model('Donation', donationSchema);

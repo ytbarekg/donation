@@ -6,18 +6,20 @@ import { AngularMaterialModule } from '../angular-material.module';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminComponent } from './admin.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { UserDialogComponent } from './user-dialog/user-dialog.component';
 
 
 @NgModule({
   declarations: [
     AdminDashboardComponent,
     AdminComponent,
-    UserListComponent
+    UserListComponent,
+    UserDialogComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule,
   ]
 })
 export class AdminModule { }

@@ -31,8 +31,6 @@ mat-sidenav-container {
     height: calc(100vh - 65px);
 }
 
-.route-container {
-    height: 100%;
-    display: block;
-    overflow: auto;
+.mat-elevation-z8 {
+    min-height: 100%;
 }
