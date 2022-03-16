@@ -11,7 +11,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'beneficiary', component: BeneficiaryRegistrationComponent},
+  {path: 'beneficiary', component: BeneficiaryRegistrationComponent,data:{role: 'Maker'}, canActivate: [AuthGuardService]},
   {path: 'admin', data:{role: 'Admin'}, canActivate: [AuthGuardService], loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
   {path: 'donor', data:{role: 'Donor'}, canActivate: [AuthGuardService], loadChildren: () => import('./donor/donor.module').then(m => m.DonorModule)},
   {path: 'maker', component: MakerDashboardComponent, data:{role: 'Maker'}, canActivate: [AuthGuardService]},

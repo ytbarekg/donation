@@ -1,4 +1,4 @@
-<div class="beneficiary-wrapper" fxLayout="row" fxLayoutAlign="center">
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center">
     <mat-card class="box">
             <mat-card-header>
                 <mat-card-title>Beneficiary Registration</mat-card-title>
@@ -23,7 +23,7 @@
             </mat-form-field>
 
             <mat-form-field appearance="fill">
-                <mat-label>Gneder</mat-label>
+                <mat-label>Gender</mat-label>
                 <mat-select formControlName="gender">
                   <mat-option *ngFor="let gender of genderType" [value]="gender">
                     {{gender}}
@@ -79,11 +79,11 @@
                 <input matInput placeholder="Endorcements" type="text" formControlName ="endorcements">
             </mat-form-field>
         </mat-card-content>
-        <mat-card-content fxLayoutGap="10px grid"></mat-card-content>
+    </mat-card-content>
         <button mat-stroked-button color="primary" class="btn-block" [disabled]="!formData.valid">Register</button>
         <mat-error *ngIf="formError">{{formError.error}}</mat-error>
-            
-        </mat-card-content>
+     
+        
         
 
     </form>

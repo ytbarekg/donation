@@ -17,7 +17,7 @@ const beneficiarySchema = new Schema({
     maximumGrant: {type: Number, default: Number.MAX_VALUE},
     registeredBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     verifiedBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    endorcements: [{ type: Schema.Types.ObjectId, ref: 'Endorcement', required: true }]
+    endorcements: [{ type: Schema.Types.ObjectId, ref: 'Endorcement'}]
 })
 
 const Beneficiary = mongoose.model('Beneficiary', beneficiarySchema);

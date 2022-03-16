@@ -8,7 +8,7 @@ import Endorsement from "../models/endorsement.js";
 
 
 class GrantService{
-    constuctor(){
+    constructor(){
         this.grantModel = Grant;
         this.endorsementModel = Endorsement;
         this.beneficiaryModel = Beneficiary;

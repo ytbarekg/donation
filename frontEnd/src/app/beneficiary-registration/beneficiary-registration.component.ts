@@ -17,6 +17,8 @@ export class BeneficiaryRegistrationComponent implements OnInit {
   formData: FormGroup;
   genderType = ['Male', 'Female'];
   categories =['Elderly','Medical seeker', 'Orphan', 'Disabled']
+  endorcements! : {content: string};
+  
 
   constructor(private formBuilder: FormBuilder,private authStateService:AuthStateService,private beneficiaryApi : BeneficiaryApiServiceService,private router: Router) {
     this.formData = formBuilder.group({
@@ -27,25 +29,42 @@ export class BeneficiaryRegistrationComponent implements OnInit {
       gender:['', Validators.required],
       phoneNumber: ['', { validators: [Validators.required, Validators.pattern("[- +()0-9]{6,}")], updateOn: "blur" }],
       address:['', Validators.required],
-      dependents:[''],
+      dependents:['', [Validators.min(0), Validators.max(10)]],
       category:['', Validators.required],
-      grantAmount:['', Validators.required],
-      maximumGrant:['',Validators.required],
+      grantAmount:['', { validators: [Validators.required, Validators.min(50)]}],
+      maximumGrant:['',{ validators: [Validators.required, Validators.min(50)]}],
       registeredBy:['', Validators.required],
       verifiedBy:['', Validators.required],
       endorcements:['', Validators.required]      
      });
    }
+   ngOnInit(): void {        
+  }
    
   onSubmit() {
-    const ben: Beneficiary = this.formData.value;
-    this.beneficiaryApi.register(ben) .subscribe(data => {
-    });
-  }
-
-  ngOnInit(): void {
-    
-    
+    const ben = {
+      firstName: this.formData.value.firstName,
+      middleName: this.formData.value.middleName,
+      lastName:this.formData.value.lastName,
+      dateOfBirth: this.formData.value.dateOfBirth,
+      gender:this.formData.value.gender,
+      phoneNumber:this.formData.value.phoneNumber,
+      address: this.formData.value.address,
+      dependents: this.formData.value.dependents,
+      category: this.formData.value.category,
+      grantAmount: this.formData.value.grantAmount,
+      maximumGrant:this.formData.value.maximumGrant,
+      registeredBy: this.formData.value.registeredBy,
+      verifiedBy: this.formData.value.verifiedBy,
+      endorcements: this.formData.value.endorcements      
+    };
+    ben.endorcements!
+    this.beneficiaryApi.register(ben).subscribe(data=>{
+      if(data){
+        this.router.navigateByUrl('/home')
+      }else{
+        alert("somthing went wrong!");}
+    })
   }
 
 }

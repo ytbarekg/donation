@@ -2,15 +2,16 @@ import autoBind from "auto-bind";
 import Beneficiary from "../models/beneficiary.js";
 
 class BeneficiaryService{
-    constuctor(){
+    constructor(){
         this.bModel = Beneficiary;
         autoBind(this);
     }
 
     async viewBeneficiaries(){
-        const data = await this.bModel.find({},
-            {project: {firstName: 1, middleName: 1,lastName: 1,age: 1, 
-                gender:1, phoneNumber:1,dependents: 1}})
+        const data = await this.bModel.find({})
+        .select({firstName: 1, middleName: 1,lastName: 1,age: 1, 
+                gender:1, phoneNumber:1,dependents: 1})
+            console.log(data);
         return data;
     }
 
@@ -22,7 +23,9 @@ class BeneficiaryService{
         })
         return data;
     }
-    async registerBeneficiary(bData){
+    async registerBeneficiary(bData, userId){
+        bData.registeredBy = userId;
+        bData.verifiedBy = userId;
         const data = await this.bModel.create(bData);
         return data;
     }

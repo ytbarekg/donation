@@ -2,7 +2,7 @@ import autoBind from "auto-bind";
 import BeneficiaryService from "../services/beneficiaryService.js";
 
 class BeneficiaryController{
-    constuctor() {
+    constructor() {
     this.service = BeneficiaryService;
     autoBind(this);
     }
@@ -27,8 +27,9 @@ class BeneficiaryController{
     }
     async registerBeneficiary (req, res, next){
         try{
+            const {id} = req.user;
             const bData = req.body;
-            const data =await this.service.registerBeneficiary(bData);
+            const data =await this.service.registerBeneficiary(bData, id);
             res.json(data);
         }
         catch(error){

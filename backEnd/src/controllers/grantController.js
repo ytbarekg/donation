@@ -2,7 +2,7 @@ import autoBind from "auto-bind";
 import grantService from "../services/grantService.js";
 
 class GrantController {
-  constuctor() {
+  constructor() {
     this.service = grantService;
     autoBind(this);
   }
