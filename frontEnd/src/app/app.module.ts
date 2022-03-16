@@ -18,6 +18,7 @@ import { AngularMaterialModule } from './angular-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ProfileComponent } from './profile/profile.component';
+import { BeneficiaryListComponent } from './beneficiary-list/beneficiary-list.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ProfileComponent } from './profile/profile.component';
     MakerDashboardComponent,
     LogoutComponent,
     ToolbarComponent,
-    ProfileComponent
+    ProfileComponent,
+    BeneficiaryListComponent
   ],
   imports: [
     BrowserModule,

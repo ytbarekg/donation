@@ -1,0 +1,23 @@
+table {
+    width: 80%;
+    /* table-layout: fixed; */
+    overflow-x: auto;
+    overflow-y: auto;
+    border-spacing: 100px 100px;
+    margin: 50px auto;
+    /* margin-top: 50px;
+    margin-bottom: 50px; */
+  }
+  th.mat-header-cell {
+    text-align: center;
+    max-width: 300px;
+    min-width: 100px;
+    margin-right: 50px;
+  }
+  td.mat-cell{
+    text-align: center;  
+  }
+  .mat-row:hover {
+    background-color: #E8EAF6;
+    cursor: pointer;
+  }

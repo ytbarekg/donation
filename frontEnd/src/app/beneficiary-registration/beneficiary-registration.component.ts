@@ -52,7 +52,7 @@ export class BeneficiaryRegistrationComponent implements OnInit {
     };
     this.beneficiaryApi.register(ben).subscribe(data=>{
       if(data){
-        this.router.navigateByUrl('/home')
+        this.router.navigateByUrl('/beneficiary')
       }else{
         alert("somthing went wrong!");}
     })
