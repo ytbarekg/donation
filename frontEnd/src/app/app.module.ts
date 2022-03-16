@@ -10,7 +10,6 @@ import { BeneficiaryRegistrationComponent } from './beneficiary-registration/ben
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './auth.interceptor';
-import { DonorDashboardComponent } from './donor-dashboard/donor-dashboard.component';
 import { MakerDashboardComponent } from './maker-dashboard/maker-dashboard.component';
 import { LogoutComponent } from './logout/logout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,7 +26,6 @@ import { ProfileComponent } from './profile/profile.component';
     LoginComponent,
     HomeComponent,
     BeneficiaryRegistrationComponent,
-    DonorDashboardComponent,
     MakerDashboardComponent,
     LogoutComponent,
     ToolbarComponent,
@@ -41,6 +39,9 @@ import { ProfileComponent } from './profile/profile.component';
     BrowserAnimationsModule,
     AngularMaterialModule,
     FlexLayoutModule
+  ],
+  exports: [
+    SignupComponent
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent],

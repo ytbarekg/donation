@@ -135,6 +135,14 @@ class AuthService {
         }
         throw new NotFoundError("user");
     }
+
+    async deleteUser(userId) {
+        const response = await this.userModel.deleteOne({_id: userId});
+        if(response.deletedCount === 1) {
+            return response;
+        }
+        throw new NotFoundError("user");
+    }
    
 }
 export default new AuthService();

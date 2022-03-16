@@ -31,6 +31,10 @@ export class UserApiService {
     return this.http.get<User>(this.URL + id);
   }
 
+  deleteById(id: string) {
+    return this.http.delete<{success: boolean}>(this.URL + id);
+  }
+
   validateEmail(email: string) {
     return this.http.get<{success: boolean}>(this.URL + "email/email=" + email);
   }

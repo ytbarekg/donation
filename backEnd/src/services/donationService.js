@@ -1,4 +1,5 @@
 import autoBind from "auto-bind";
+import crypto from 'crypto'
 import Donation from "../models/donation.js";
 import Beneficiary from "../models/beneficiary.js"
 import CredentialError from "../errors/CredentialError.js";
@@ -15,6 +16,8 @@ class DonationService {
 
     async create(donationData) {
         try {
+            donationData.payment.amount = donationData.amount;
+            donationData.payment.transactionNumber = crypto.randomBytes(20).toString('hex');
             const donation = await this.donationModel.create(donationData);
             return donation;
         } catch (error) {

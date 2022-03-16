@@ -25,7 +25,7 @@ app.use(cors());
 app.use("/api/users/", userRoute);
 app.use("/api/donations/", donationRoute);
 app.use("/api/grants/", grantRoute);
-app.use("api/beneficiaries/", beneficiaryRoute);
+app.use("/api/beneficiaries/", beneficiaryRoute);
 
 app.use("*", (req, res, next) => {
     next(new NotFoundError("path"));

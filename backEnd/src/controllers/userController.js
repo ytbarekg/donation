@@ -126,6 +126,17 @@ class AuthController {
         }
     }
 
+    async deleteUser(req, res, next) {
+        try {
+            const {id} = req.params;
+            const user = await this.service.deleteUser(id);
+            res.json(user)
+        }
+        catch(error) {
+            next(error);
+        }
+    }
+
     validateUser(user) {
         return true;
     }

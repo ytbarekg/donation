@@ -44,7 +44,7 @@ export class AuthStateService {
       this.token = data.token;
       this.user = jwt_decode(this.token!);
       localStorage.setItem('user', JSON.stringify(this.user))
-      localStorage.setItem('token', JSON.stringify(this.token))
+      localStorage.setItem('token', this.token!)
   }
 
 
