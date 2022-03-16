@@ -2,7 +2,7 @@ export interface Beneficiary{
     firstName: String,
     middleName: String,
     lastName:String,
-    dateOfBirth: Date,
+    age: number,
     gender: String,
     phoneNumber:String,
     address: String,

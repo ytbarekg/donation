@@ -13,19 +13,19 @@ export class BeneficiaryApiServiceService {
   constructor(private http: HttpClient) { }
 
   register(ben: Beneficiary){
-    return this.http.post<Beneficiary>(this.URL + "register", ben);
+    return this.http.post<Beneficiary>(this.URL, ben);
   }
 
   getAll(){
-    return this.http.get<Beneficiary[]>(this.URL + "getAll");
+    return this.http.get<Beneficiary[]>(this.URL);
   }
 
   getById(id: string){
-    return this.http.get<Beneficiary>(this.URL + "getById" + id);
+    return this.http.get<Beneficiary>(this.URL + id);
   }
 
   update(ben: Beneficiary){
-    return this.http.put<Beneficiary>(this.URL + "update", ben);
+    return this.http.put<Beneficiary>(this.URL, ben);
   }
   removeById(id: string){
     return this.http.delete<Beneficiary>(this.URL + "removeById" + id);

@@ -25,17 +25,13 @@ export class BeneficiaryRegistrationComponent implements OnInit {
       firstName: ['', Validators.required], 
       middleName: ['', Validators.required],
       lastName: ['', Validators.required],
-      dateOfBirth: ['', Validators.required],
+      age: ['', Validators.required],
       gender:['', Validators.required],
       phoneNumber: ['', { validators: [Validators.required, Validators.pattern("[- +()0-9]{6,}")], updateOn: "blur" }],
       address:['', Validators.required],
       dependents:['', [Validators.min(0), Validators.max(10)]],
       category:['', Validators.required],
-      grantAmount:['', { validators: [Validators.required, Validators.min(50)]}],
       maximumGrant:['',{ validators: [Validators.required, Validators.min(50)]}],
-      registeredBy:['', Validators.required],
-      verifiedBy:['', Validators.required],
-      endorcements:['', Validators.required]      
      });
    }
    ngOnInit(): void {        
@@ -46,19 +42,14 @@ export class BeneficiaryRegistrationComponent implements OnInit {
       firstName: this.formData.value.firstName,
       middleName: this.formData.value.middleName,
       lastName:this.formData.value.lastName,
-      dateOfBirth: this.formData.value.dateOfBirth,
+      age: this.formData.value.age,
       gender:this.formData.value.gender,
       phoneNumber:this.formData.value.phoneNumber,
       address: this.formData.value.address,
       dependents: this.formData.value.dependents,
       category: this.formData.value.category,
-      grantAmount: this.formData.value.grantAmount,
       maximumGrant:this.formData.value.maximumGrant,
-      registeredBy: this.formData.value.registeredBy,
-      verifiedBy: this.formData.value.verifiedBy,
-      endorcements: this.formData.value.endorcements      
     };
-    ben.endorcements!
     this.beneficiaryApi.register(ben).subscribe(data=>{
       if(data){
         this.router.navigateByUrl('/home')
